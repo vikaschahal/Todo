@@ -1,0 +1,14 @@
+<div class="well">
+
+<%= form_tag("/todos/privateToDo/", :method => "post") do %>
+   <ul style="list-style-type:none;">
+     <% @todo_items.each do |t| %>
+     <% if t.private == true %>
+          <li style="color:blue;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <strike><%= t.todo_item %></strike> </li>
+       <% else %>
+          <li> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>  </li>
+       <% end %>
+  <%end%>
+  </ul>
+  <%= submit_tag("Make private Todos", :class=>"btn btn-success") %>
+<%end %>

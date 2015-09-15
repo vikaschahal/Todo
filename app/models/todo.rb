@@ -1,4 +1,6 @@
 class Todo < ActiveRecord::Base
 #attr_accessible :todo_item
- validates :todo_item, presence: true
+  belongs_to :user
+  validates :todo_item, presence: true
+
 end

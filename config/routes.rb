@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
+  devise_for :users
   get  'todos/index'
-  get "delete" => "todos#delete"
-  post 'todos/add'   =>  "todos#add"
-  post 'todos/complete' => 'todos#complete'
-
+  get  'todos/new'           =>  "todos#new"
+  get "delete"               =>  "todos#delete"
+  post 'todos/add'           =>  "todos#add"
+  post 'todos/complete'      =>  'todos#complete'
+  post 'todos/privateToDo'   =>  "todos#privateToDo"
+  get  'users/index'         =>   "users#index"
+  get  'users/show'         =>   "users#show"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+   root 'todos#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -59,4 +63,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  resources:users
 end

@@ -7,12 +7,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="navbar  navbar-inverse">
-  <div class="navbar-inner ">
-     <a class="navbar-brand glyphicon glyphicon-ok" href="#">Just Did It</a>
+<header class="navbar  navbar-inverse">
+  <div class="navbar-inner  ">
+
+     <%= link_to " All User", users_index_path, :class => 'navbar-link'  %>|
+     <%= link_to "Home", todos_index_path, :class => 'navbar-link '  %>
  </div>
- </div>
+  <div class=" navbar-inner   navbar-right">
+  <% if user_signed_in? %>
+ <font color="white">  Logged in as: <strong><%= current_user.email %></strong>.
+    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+    <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+    </font>
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+    <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+  <% end %>
+</div>
+
+ </header>
+ <p class="navbar-text pull-right">
+
  <div class="container">
+   <% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
   <%= yield %>
 </div>
 

@@ -1,0 +1,25 @@
+<p>User Todos</p>
+<!-- <ul>
+  <% if !@todos.nil? %>
+ <% @todos.each do |t| %>
+ <li><% if t.private == true %></li>
+ <%= t.todo_item %>
+  <% else %>
+  <li>  <strong>Sorry,No public Todo</strong></li>
+    <%end%>
+  <%end%>
+    <% else %>
+    <p><strong>Sorry,No  Todos </strong></p>
+    <%end%>
+</ul> -->
+<ul>
+
+ <% @todos.each do |t| %>
+ <li><% if t.private == true %></li>
+ <%= t.todo_item %>
+  <% else %>
+  <li>  <strong>Sorry,No public Todo</strong></li>
+    <%end%>
+  <%end%>
+    
+</ul>
