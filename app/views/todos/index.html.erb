@@ -37,12 +37,12 @@
   </div>
 
   <div class="well">
-    <p>All your todos here</p>
+    <p><strong>Todo List</strong></p>
     <%= form_tag("/todos/complete/", :method => "post") do %>
        <ul style="list-style-type:none;">
         <% @todo_items.each do |t| %>
            <% if t.completed == true %>
-             <li style="color:red;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <strike><%= t.todo_item %></strike> </li>
+             <li style="color:red;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <strike><%= t.todo_item %></strike>(completed) </li>
            <% else %>
              <li> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>  </li>
            <% end %>
@@ -57,7 +57,7 @@
       <ul style="list-style-type:none;">
         <% @todo_items.each do |t| %>
           <% if t.private == true %>
-            <li style="color:blue;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <%= t.todo_item %> </li>
+            <li style="color:blue;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <%= t.todo_item %>(Private) </li>
           <% else %>
             <li> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>  </li>
           <% end %>
