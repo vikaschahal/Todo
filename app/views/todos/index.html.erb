@@ -4,41 +4,65 @@
     <div class="span4">
       <h1> Todo App</h1>
       <hr>
-      
+
      <div class="well">
 
         <%= link_to "ADD NEW TODO", todos_new_path %>
+
     </div>
+  <div class='well'>
+      <p>Public Todos</p>
+    <ul>
 
+         <% @todo_items.each do |t| %>
+           <% if (t.private.nil?) %>
+             <li><%= t.todo_item %>
+               <%= link_to "delete", delete_path, method: :delete,
+                                                  data: { confirm: "You sure?" } %>
+             </li>
+          <%end%>
+       <%end%>
+    </ul>
+    <p>Private Todos</p>
+    <ul>
+      <% @todo_items.each do |t| %>
+         <% if (t.private==true) %>
+           <li><%= t.todo_item %>
+             <%= link_to "delete", delete_path, method: :delete,
+                                                data: { confirm: "You sure?" } %>
+           </li>
+        <%end%>
+     <%end%>
+   </ul>
+  </div>
 
-      <div class="well">
-      <p>All your todos here</p>
-      <%= form_tag("/todos/complete/", :method => "post") do %>
-         <ul style="list-style-type:none;">
-           <% @todo_items.each do |t| %>
+  <div class="well">
+    <p>All your todos here</p>
+    <%= form_tag("/todos/complete/", :method => "post") do %>
+       <ul style="list-style-type:none;">
+        <% @todo_items.each do |t| %>
            <% if t.completed == true %>
-                <li style="color:red;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <strike><%= t.todo_item %></strike> </li>
-             <% else %>
-                <li> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>  </li>
-             <% end %>
+             <li style="color:red;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <strike><%= t.todo_item %></strike> </li>
+           <% else %>
+             <li> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>  </li>
+           <% end %>
         <%end%>
-        </ul>
-        <%= submit_tag("Complete Todos", :class=>"btn btn-success") %>
+      </ul>
+      <%= submit_tag("Complete Todos", :class=>"btn btn-success") %>
     <%end %>
-
-      </div> <!-- well -->
-      <div class="well">
-      <p><strong> Todo List</strong> </p>
-      <%= form_tag("/todos/privateToDo/", :method => "post") do %>
-         <ul style="list-style-type:none;">
-           <% @todo_items.each do |t| %>
-           <% if t.private == true %>
-                <li style="color:blue;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <strike><%= t.todo_item %></strike> </li>
-             <% else %>
-                <li> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>  </li>
-             <% end %>
+  </div> <!-- well -->
+  <div class="well">
+    <p><strong> Todo List</strong> </p>
+    <%= form_tag("/todos/privateToDo/", :method => "post") do %>
+      <ul style="list-style-type:none;">
+        <% @todo_items.each do |t| %>
+          <% if t.private == true %>
+            <li style="color:blue;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <%= t.todo_item %> </li>
+          <% else %>
+            <li> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>  </li>
+          <% end %>
         <%end%>
-        </ul>
+      </ul>
         <%= submit_tag("Make private Todos", :class=>"btn btn-success") %>
       <%end %>
     </div> <!-- span4 -->

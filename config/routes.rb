@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post 'todos/complete'      =>  'todos#complete'
   post 'todos/privateToDo'   =>  "todos#privateToDo"
   get  'users/index'         =>   "users#index"
-  get  'users/show'         =>   "users#show"
+  #get  'users/show'         =>   "users#show"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -64,4 +64,5 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   resources:users
+  resources:todos, only:[:create,:destroy]
 end
