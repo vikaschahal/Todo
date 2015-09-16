@@ -9,9 +9,7 @@
          <div class="btn btn-info btn-sm btn-block " >
         <%= link_to "ADD NEW TODO", todos_new_path %></br>
       </div>
-      <div class="btn btn-info btn-sm btn-block">
-          <%= link_to "DELETE TODOS", todos_delete_path %>
-       </div>
+    
     </div>
   <div class='well'>
       <p><strong>Public Todos</strong></p>
@@ -19,7 +17,14 @@
 
          <% @todo_items.each do |t| %>
            <% if (t.private== false) %>
-             <li><%= t.todo_item %> <ul><li><%= t.event_date %></li></ul></li>
+
+             <li><%= t.todo_item %>
+               <ul>
+                 <li><%= t.event_date %><%= link_to "delete", todos_destroy_path(:param1 => t.id), method: :delete,
+                                                                                                   data: { confirm: "You sure?" } %>
+                 </li>
+               </ul>
+             </li>
           <%end%>
        <%end%>
     </ul>
@@ -27,7 +32,15 @@
     <ul>
       <% @todo_items.each do |t| %>
          <% if (t.private==true) %>
-           <li><%= t.todo_item %> <ul><li><%= t.event_date %></li></ul></li>
+           <li>
+             <%= t.todo_item %>
+             <ul>
+               <li>
+                 <%= t.event_date %><%= link_to "delete", todos_destroy_path(:param1 => t.id), method: :delete,
+                                                                                               data: { confirm: "You sure?" } %>
+               </li>
+             </ul>
+           </li>
         <%end%>
      <%end%>
    </ul>
@@ -39,9 +52,13 @@
        <ul style="list-style-type:none;">
         <% @todo_items.each do |t| %>
            <% if t.completed == true %>
-             <li style="color:red;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <strike><%= t.todo_item %></strike>(completed) </li>
+             <li style="color:red;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <strike><%= t.todo_item %></strike>(completed)
+                 <ul><li>Created :<%= time_ago_in_words(t.created_at) %> ago.</li></ul>
+             </li>
            <% else %>
-             <li> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>  </li>
+             <li> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>
+               <ul><li>Created <%= time_ago_in_words(t.created_at) %> ago.</li></ul>
+             </li>
            <% end %>
         <%end%>
       </ul>
@@ -54,9 +71,13 @@
       <ul style="list-style-type:none;">
         <% @todo_items.each do |t| %>
           <% if t.private == true %>
-            <li style="color:blue;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <%= t.todo_item %>(Private) </li>
+            <li style="color:blue;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <%= t.todo_item %>(Private)
+              <ul><li>Created <%= time_ago_in_words(t.created_at) %> ago.</li></ul>
+             </li>
           <% else %>
-            <li> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>  </li>
+            <li> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>
+             <ul><li>Created <%= time_ago_in_words(t.created_at) %> ago.</li></ul>
+             </li>
           <% end %>
         <%end%>
       </ul>

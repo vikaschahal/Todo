@@ -6,9 +6,9 @@
       <hr>
       <p>Create New Todo</p>
 
-      <%= form_for @new_todo , :url => { :action => "add" }  do |f|  %>
+      <%= form_for @new_todo   do |f|  %>
       <%= f.label  :Todo_item %>
-      <%= f.text_field  :todo_item ,:placeholder =>"Your Next Event"%></br>
+      <%= f.text_field  :todo_item ,:placeholder =>"Compose New Todo"%></br>
       <div class="field">
       <%= f.label  :event_date %>
       <%= f.text_field  :event_date  ,:placeholder =>"yyyy/mm/dd",'data-behaviour' => 'datepicker'%></br>

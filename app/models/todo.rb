@@ -1,5 +1,5 @@
 class Todo < ActiveRecord::Base
-#attr_accessible :todo_item
+  default_scope -> { order(created_at: :desc) }
   belongs_to :user
   validates :todo_item, presence: true
 

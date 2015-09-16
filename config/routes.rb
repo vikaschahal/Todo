@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   get  'todos/index'
   get  'todos/new'           =>  "todos#new"
   get  'todos/delete'       =>  "todos#delete"
-  post 'todos/destroy'       =>  "todos#destroy"
-  post 'todos/add'           =>  "todos#add"
+  delete 'todos/destroy'       =>  "todos#destroy"
   post 'todos/complete'      =>  'todos#complete'
   post 'todos/privateToDo'   =>  "todos#privateToDo"
   get  'users/index'         =>   "users#index"
+
   #get  'users/show'         =>   "users#show"
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -65,5 +65,5 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   resources:users
-  resources:todos, only:[:create,:destroy]
+  resources:todos
 end
