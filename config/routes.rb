@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   get  'todos/index'
   get  'todos/new'           =>  "todos#new"
-  get "delete"               =>  "todos#delete"
+  get  'todos/delete'       =>  "todos#delete"
+  post 'todos/destroy'       =>  "todos#destroy"
   post 'todos/add'           =>  "todos#add"
   post 'todos/complete'      =>  'todos#complete'
   post 'todos/privateToDo'   =>  "todos#privateToDo"

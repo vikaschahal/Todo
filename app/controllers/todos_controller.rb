@@ -9,7 +9,17 @@ class TodosController < ApplicationController
   render :new
   end
   def delete
-    @last = Todo.last.destroy
+    @todo_item=current_user.todos.all
+    render :delete
+  end
+  def destroy
+
+    params[:todos_checkbox].each do |check|
+      todo_id = check
+      t = Todo.find_by_id(todo_id)
+      t.destroy
+    end
+    redirect_to :action => 'index'
   end
 
   def add

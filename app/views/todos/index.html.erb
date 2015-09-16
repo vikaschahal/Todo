@@ -6,31 +6,28 @@
       <hr>
 
      <div class="well">
-
-        <%= link_to "ADD NEW TODO", todos_new_path %>
-
+         <div class="btn btn-info btn-sm btn-block " >
+        <%= link_to "ADD NEW TODO", todos_new_path %></br>
+      </div>
+      <div class="btn btn-info btn-sm btn-block">
+          <%= link_to "DELETE TODOS", todos_delete_path %>
+       </div>
     </div>
   <div class='well'>
-      <p>Public Todos</p>
+      <p><strong>Public Todos</strong></p>
     <ul>
 
          <% @todo_items.each do |t| %>
            <% if (t.private.nil?) %>
-             <li><%= t.todo_item %>
-               <%= link_to "delete", delete_path, method: :delete,
-                                                  data: { confirm: "You sure?" } %>
-             </li>
+             <li><%= t.todo_item %></li>
           <%end%>
        <%end%>
     </ul>
-    <p>Private Todos</p>
+    <p><strong>Private Todos</strong></p>
     <ul>
       <% @todo_items.each do |t| %>
          <% if (t.private==true) %>
-           <li><%= t.todo_item %>
-             <%= link_to "delete", delete_path, method: :delete,
-                                                data: { confirm: "You sure?" } %>
-           </li>
+           <li><%= t.todo_item %></li>
         <%end%>
      <%end%>
    </ul>
@@ -63,9 +60,8 @@
           <% end %>
         <%end%>
       </ul>
-        <%= submit_tag("Make private Todos", :class=>"btn btn-success") %>
+        <%= submit_tag("Make Private Todos", :class=>"btn btn-success") %>
       <%end %>
     </div> <!-- span4 -->
   </div> <!-- row -->
 </div> <!-- container -->
-<%= link_to "Delete last todo", delete_path %>
