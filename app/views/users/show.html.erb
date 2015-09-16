@@ -3,7 +3,7 @@
 <p>User Todos</p>
   <ul>
     <% @todos.each do |t| %>
-       <% if (t.private.nil?) %>
+       <% if (t.private==false) %>
          <li><%= t.todo_item %></li>
       <%end%>
     <%end%>

@@ -18,8 +18,8 @@
     <ul>
 
          <% @todo_items.each do |t| %>
-           <% if (t.private.nil?) %>
-             <li><%= t.todo_item %></li>
+           <% if (t.private== false) %>
+             <li><%= t.todo_item %> <ul><li><%= t.event_date %></li></ul></li>
           <%end%>
        <%end%>
     </ul>
@@ -27,7 +27,7 @@
     <ul>
       <% @todo_items.each do |t| %>
          <% if (t.private==true) %>
-           <li><%= t.todo_item %></li>
+           <li><%= t.todo_item %> <ul><li><%= t.event_date %></li></ul></li>
         <%end%>
      <%end%>
    </ul>

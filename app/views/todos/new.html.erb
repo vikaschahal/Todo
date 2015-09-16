@@ -4,10 +4,15 @@
     <div class="span4">
       <h1>Todo App</h1>
       <hr>
-      <p>All your todos here</p>
+      <p>Create New Todo</p>
 
       <%= form_for @new_todo , :url => { :action => "add" }  do |f|  %>
-      <%= f.text_field  :todo_item %>
+      <%= f.label  :Todo_item %>
+      <%= f.text_field  :todo_item ,:placeholder =>"Your Next Event"%></br>
+      <div class="field">
+      <%= f.label  :event_date %>
+      <%= f.text_field  :event_date  ,:placeholder =>"yyyy/mm/dd",'data-behaviour' => 'datepicker'%></br>
+    </div>
       <%= f.submit "Add todo", class: "btn btn-primary" %>
       <%end%>
      <% if !flash[:error].nil? %>
