@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="wrapper">
 <header class="navbar  navbar-inverse">
   <div class="navbar-inner  ">
 
@@ -36,16 +37,15 @@
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
   <%= yield %>
-  <footer class="footer">
+  <footer class="footer wrap">
 
-  <nav>
     <%= debug(params) if Rails.env.development? %>
-  </nav>
+
 </footer>
 
 
 </div>
 
-
+</div>
 </body>
 </html>
