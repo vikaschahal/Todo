@@ -7,25 +7,13 @@ class TodosController < ApplicationController
   def new
   @new_todo = Todo.new
   end
-  def delete
-    @todo_item=current_user.todos.all
-    render :delete
+
+  def complete_handler
+    @todo_items = current_user.todos.all
+    render:complete
+
   end
-  def destroy
-    @todo = Todo.find(params[:param1])
-    @todo.destroy
-    flash[:success] = "Todo deleted"
-    redirect_to request.referrer || root_url
-  end
-  # def destroy
-  #
-  #   params[:todos_checkbox].each do |check|
-  #     todo_id = check
-  #     t = Todo.find_by_id(todo_id)
-  #     t.destroy
-  #   end
-  #   redirect_to :action => 'index'
-  # end
+
 
   def create
     @todo = current_user.todos.create(todo_params)
@@ -37,6 +25,14 @@ class TodosController < ApplicationController
     end
     redirect_to :action => 'index'
   end
+  def destroy
+    @todo = Todo.find(params[:param1])
+    @todo.destroy
+    flash[:success] = "Todo deleted"
+    redirect_to request.referrer || root_url
+  end
+
+
 
   def complete
     params[:todos_checkbox].each do |check|

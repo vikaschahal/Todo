@@ -1,11 +1,15 @@
 
 <div class="well">
-<p>User Todos</p>
+<p><strong><%= @user.email %> Todos</strong></p>
   <ul>
+    <% if  (@todos.nil?) %>
+    <li><strong>Sorry No Todo's</strong></li>
+    <%end%>
     <% @todos.each do |t| %>
-       <% if (t.private==false) %>
-         <li><%= t.todo_item %></li>
+      <% if (t.private==false) %>
+        <li><%= t.todo_item %></li>
       <%end%>
+
     <%end%>
   </ul>
 </div>

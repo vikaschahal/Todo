@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
   get  'todos/index'
-  get  'todos/new'           =>  "todos#new"
-  get  'todos/delete'       =>  "todos#delete"
-  delete 'todos/destroy'       =>  "todos#destroy"
-  post 'todos/complete'      =>  'todos#complete'
-  post 'todos/privateToDo'   =>  "todos#privateToDo"
-  get  'users/index'         =>   "users#index"
+  get  'todos/new'              =>  "todos#new"
+  get  'todos/completes'  => "todos#complete_handler"
+  get  'todos/delete'           =>  "todos#delete"
+  delete 'todos/destroy'        =>  "todos#destroy"
+  post 'todos/complete'         =>  'todos#complete'
+  post 'todos/privateToDo'      =>  "todos#privateToDo"
+  get  'users/index'            =>   "users#index"
 
   #get  'users/show'         =>   "users#show"
 

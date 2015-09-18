@@ -1,0 +1,19 @@
+<div class="well">
+  <p><strong>Todo List</strong></p>
+  <%= form_tag("/todos/complete/", :method => "post") do %>
+     <ul style="list-style-type:none;">
+      <% @todo_items.each do |t| %>
+         <% if t.completed == true %>
+           <li style="color:red;"> <%= check_box_tag  "todos_checkbox[]",t.id %>  <strike><%= t.todo_item %></strike>(completed)
+               <ul><li>Created :<%= time_ago_in_words(t.created_at) %> ago.</li></ul>
+           </li>
+         <% else %>
+           <li> <%= check_box_tag  "todos_checkbox[]",t.id %> <%= t.todo_item %>
+             <ul><li>Created <%= time_ago_in_words(t.created_at) %> ago.</li></ul>
+           </li>
+         <% end %>
+      <%end%>
+    </ul>
+    <%= submit_tag("Complete Todos", :class=>"btn btn-success") %>
+  <%end %>
+</div> <!-- well -->
