@@ -17,7 +17,8 @@ class TodosController < ApplicationController
       flash[:success]= "Todo added successfully"
 
     else
-      flash[:error] = todo.errors.full_messages.join("<br>").html_safe
+      #flash[:error] = @todo.errors.full_messages.join("<br>").html_safe
+      render 'new'
     end
     redirect_to :action => 'index'
   end
@@ -32,10 +33,10 @@ class TodosController < ApplicationController
 
   def complete
     @todo = Todo.find(params[:param1])
-    if(@todo.completed==false)
-      @todo.update_attribute(:completed, true)
-    else
+    if(@todo.completed==true)
       @todo.update_attribute(:completed, false)
+    else
+      @todo.update_attribute(:completed, true)
     end
     redirect_to :action => 'index'
  end
@@ -79,6 +80,6 @@ class TodosController < ApplicationController
 
  private
    def todo_params
-      params.require(:todo).permit(:todo_item,:event_date)
+      params.require(:todo).permit(:todo_item,:start_date,:end_date)
     end
  end

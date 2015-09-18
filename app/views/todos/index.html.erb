@@ -1,8 +1,8 @@
-<title> Todo App </title>
+<title> TravelList App </title>
 <div class="container">
   <div class="row">
     <div class="span4">
-      <h1> Todo App</h1>
+      <h1> Travel List App</h1>
       <hr>
 
       <div class="btn btn-info btn-sm  " >
@@ -15,7 +15,8 @@
 
         <th>Travel List</th>
         <th>Privacy</th>
-        <th>Event Date</th>
+        <th>Start Date</th>
+        <th>End Date</th>
         <th>Status</th>
         <th>Privacy</th>
         <th>Delete</th>
@@ -30,8 +31,9 @@
               <%else%> Private
              <%end%>
         </td>
-        <td><%= t.event_date %> </td>
-        <td> <%if(t.completed==false)%>Uncomplete<%else%>Completed<%end%><div class="btn  btn-sm  " style color="red" >(<%= link_to "Change", todos_complete_path(:param1 => t.id), method: :post,
+        <td><%= t.start_date %> </td>
+        <td><%= t.end_date %> </td>
+        <td> <%if(t.completed==true)%>Completed<%else%>Uncomplete<%end%><div class="btn  btn-sm  " style color="red" >(<%= link_to "Change", todos_complete_path(:param1 => t.id), method: :post,
                                                                                                                                 data: { confirm: "You sure?" } %></div>)
         </td>
         <td> <%if(t.private==false)%>Public<%else%>Private<%end%><div class="btn  btn-sm  " style color="red" >(<%= link_to "Change", todos_privateToDo_path(:param1 => t.id), method: :post,

@@ -12,6 +12,7 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'pry'
 gem 'devise'
 gem 'bootstrap-datepicker-rails', '>= 0.6.21'
+gem 'jquery-validation-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

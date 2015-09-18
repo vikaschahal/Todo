@@ -7,11 +7,15 @@
       <p>Create New Todo</p>
 
       <%= form_for @new_todo   do |f|  %>
-      <%= f.label  :Todo_item %>
+
+      <%= f.label :Travel_place %>
       <%= f.text_field  :todo_item ,:placeholder =>"Compose New Todo"%></br>
       <div class="field">
-      <%= f.label  :event_date %>
-      <%= f.text_field  :event_date  ,:placeholder =>"yyyy/mm/dd",'data-behaviour' => 'datepicker'%></br>
+      <%= f.label  :start_date %>
+       <%= f.text_field  :start_date  ,:placeholder =>"yyyy/mm/dd",'data-behaviour' => 'datepicker'%></br>
+      <%= f.label  :end_date %>
+       <%= f.text_field  :end_date  ,:placeholder =>"yyyy/mm/dd",'data-behaviour' => 'datepicker'%></br>
+
     </div>
       <%= f.submit "Add todo", class: "btn btn-primary" %>
       <%end%>

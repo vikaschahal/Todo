@@ -7,12 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
   <div id="wrapper">
 <header class="navbar  navbar-inverse">
   <div class="navbar-inner  ">
 
 
-     <%= link_to "Home", todos_index_path, :class => 'navbar-link '  %>
+    <strong><div style="color: navy"> <%= link_to "Home", todos_index_path, :class => 'navbar-link '  %></strong>
  </div>
   <div class=" navbar-inner   navbar-right">
   <% if user_signed_in? %>
