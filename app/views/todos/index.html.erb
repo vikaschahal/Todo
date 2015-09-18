@@ -5,48 +5,47 @@
       <h1> Todo App</h1>
       <hr>
 
-     <div class="well">
-         <div class="btn btn-info btn-sm btn-block " >
-        <%= link_to "ADD NEW TODO", todos_new_path %></br>
-      </div>
-
-    </div>
+      <div class="btn btn-info btn-sm  " >
+     <%= link_to "ADD NEW TODO", todos_new_path %></br>
+     </div>
   <div class='well'>
-      <p><strong>Public Todos</strong></p>
-    <ul>
+    <table class="table table-hover">
+    <thead>
+      <tr>
 
-         <% @todo_items.each do |t| %>
-           <% if (t.private== false) %>
+        <th>Travel List</th>
+        <th>Privacy</th>
+        <th>Event Date</th>
+        <th>Status</th>
+        <th>Privacy</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+       <% @todo_items.each do |t| %>
+      <tr>
 
-             <li><%= t.todo_item %>
-               <ul>
-                 <li><%= t.event_date %><%= link_to "delete", todos_destroy_path(:param1 => t.id), method: :delete,
-                                                                                                   data: { confirm: "You sure?" } %>
-                 </li>
-               </ul>
-             </li>
-          <%end%>
-       <%end%>
-    </ul>
-    <p><strong>Private Todos</strong></p>
-    <ul>
-      <% @todo_items.each do |t| %>
-         <% if (t.private==true) %>
-           <li>
-             <%= t.todo_item %>
-             <ul>
-               <li>
-                 <%= t.event_date %><%= link_to "delete", todos_destroy_path(:param1 => t.id), method: :delete,
-                                                                                               data: { confirm: "You sure?" } %>
-               </li>
-             </ul>
-           </li>
-        <%end%>
-     <%end%>
-   </ul>
-  </div>
+        <td><%= t.todo_item %></td>
+        <td><%if (t.private== false)%> Public
+              <%else%> Private
+             <%end%>
+        </td>
+        <td><%= t.event_date %> </td>
+        <td> <%if(t.completed==false)%>Uncomplete<%else%>Completed<%end%><div class="btn  btn-sm  " style color="red" >(<%= link_to "Change", todos_complete_path(:param1 => t.id), method: :post,
+                                                                                                                                data: { confirm: "You sure?" } %></div>)
+        </td>
+        <td> <%if(t.private==false)%>Public<%else%>Private<%end%><div class="btn  btn-sm  " style color="red" >(<%= link_to "Change", todos_privateToDo_path(:param1 => t.id), method: :post,
+                                                                                                                                                                           data: { confirm: "You sure?" } %></div>)
+        </td>
+        <td> <div  class="btn btn-info btn-sm  "  ><%= link_to "delete", todos_destroy_path(:param1 => t.id), method: :delete,
+                                                                                          data: { confirm: "You sure?" } %></div></td>
 
-  <div class="well">
+      </tr><% end %>
+        </tbody>
+  </table>
+
+
+  <!-- <div class="well">
     <p><strong> Todo List</strong> </p>
     <%= form_tag("/todos/privateToDo/", :method => "post") do %>
       <ul style="list-style-type:none;">

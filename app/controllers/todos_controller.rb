@@ -8,11 +8,7 @@ class TodosController < ApplicationController
   @new_todo = Todo.new
   end
 
-  def complete_handler
-    @todo_items = current_user.todos.all
-    render:complete
 
-  end
 
 
   def create
@@ -35,23 +31,51 @@ class TodosController < ApplicationController
 
 
   def complete
-    params[:todos_checkbox].each do |check|
-      todo_id = check
-      t = Todo.find_by_id(todo_id)
-      t.update_attribute(:completed, true)
+    @todo = Todo.find(params[:param1])
+    if(@todo.completed==false)
+      @todo.update_attribute(:completed, true)
+    else
+      @todo.update_attribute(:completed, false)
     end
     redirect_to :action => 'index'
  end
 
-
  def privateToDo
-   params[:todos_checkbox].each do |check|
-     todo_id = check
-     t = Todo.find_by_id(todo_id)
-     t.update_attribute(:private, true)
+   @todo = Todo.find(params[:param1])
+   if(@todo.private==false)
+     @todo.update_attribute(:private, true)
+   else
+     @todo.update_attribute(:private, false)
    end
    redirect_to :action => 'index'
  end
+ # def complete_handler
+ #   @todo_items = current_user.todos.all
+ #   render:complete
+ #
+ # end
+ #  def complete
+ #    params[:todos_checkbox].each do |check|
+ #      todo_id = check
+ #      t = Todo.find_by_id(todo_id)
+ #      t.update_attribute(:completed, true)
+ #    end
+ #    redirect_to :action => 'index'
+ # end
+
+
+ # def privateToDo
+ #   params[:todos_checkbox].each do |check|
+ #     todo_id = check
+ #     t = Todo.find_by_id(todo_id)
+ #     if(t.private==false)
+ #       t.update_attribute(:private, true)
+ #     else
+ #       t.update_attribute(:private, false)
+ #     end
+ #   end
+ #   redirect_to :action => 'index'
+ # end
 
  private
    def todo_params
