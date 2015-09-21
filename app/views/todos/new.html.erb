@@ -6,30 +6,45 @@
       <hr>
       <p>Create New Todo</p>
 
-      <%= form_for @new_todo   do |f|  %>
+      <% if !flash[:error].nil? %>
+        <div class="alert alert-danger">
+         <button type="button" class="close" data-dismiss="alert" >×</button>
+         <strong><%= flash[:error] %></strong>
+         </div>
+        <% end %>
 
-      <%= f.label :Travel_place %>
-      <%= f.text_field  :todo_item ,:placeholder =>"Compose New Todo"%></br>
-      <div class="field">
-      <%= f.label  :start_date %>
-       <%= f.text_field  :start_date  ,:placeholder =>"yyyy/mm/dd",'data-behaviour' => 'datepicker'%></br>
-      <%= f.label  :end_date %>
-       <%= f.text_field  :end_date  ,:placeholder =>"yyyy/mm/dd",'data-behaviour' => 'datepicker'%></br>
-
-    </div>
-      <%= f.submit "Add todo", class: "btn btn-primary" %>
+      <!-- binding.pry -->
+      <%= form_for Todo.new ,:html => {:class => "form-horizontal center"} do |f|  %>
+        <div class="form-group">
+          <%= f.label :Travel_place ,class: "col-md-4 control-label"%>
+          <%= f.text_field  :todo_item ,:placeholder =>"Compose New Todo"%>
+        </div>
+        <div class="field">
+        <div class="form-group">
+          <%= f.label  :start_date,class: "col-md-4 control-label" %>
+          <%= f.text_field  :start_date  ,:placeholder =>"yyyy/mm/dd",'data-behaviour' => 'datepicker'%>
+        </div>
+        <div class="form-group">
+          <%= f.label  :end_date,class: "col-md-4 control-label" %>
+          <%= f.text_field  :end_date  ,:placeholder =>"yyyy/mm/dd",'data-behaviour' => 'datepicker'%>
+        </div>
+        <div class="form-group">
+        <%= f.submit "Add todo", class: "btn btn-primary " %>
+       </div>
+       </div>
       <%end%>
-     <% if !flash[:error].nil? %>
+     <!-- <% if !flash[:error].nil? %>
        <div class="alert alert-error">
         <button type="button" class="close" data-dismiss="alert" >×</button>
         <strong><%= flash[:error] %></strong>
         </div>
        <% end %>
-   <% if flash[:success] %>
+       -->
+   <!-- <% if flash[:success] %>
       <div class="alert alert-success">
        <%= flash[:success] %>
       </div>
-      <% end %>
+      <% end %> -->
 
     </div> <!-- span4 -->
   </div> <!-- row -->

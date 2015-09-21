@@ -4,7 +4,11 @@
     <div class="span4">
       <h1> Travel List App</h1>
       <hr>
-
+      <% if flash[:success] %>
+         <div class="alert alert-success">
+          <%= flash[:success] %>
+         </div>
+         <% end %> 
       <div class="btn btn-info btn-sm  " >
      <%= link_to "ADD NEW TODO", todos_new_path %></br>
      </div>
@@ -33,13 +37,13 @@
         </td>
         <td><%= t.start_date %> </td>
         <td><%= t.end_date %> </td>
-        <td> <%if(t.completed==true)%>Completed<%else%>Uncomplete<%end%><div class="btn  btn-sm  " style color="red" >(<%= link_to "Change", todos_complete_path(:param1 => t.id), method: :post,
-                                                                                                                                data: { confirm: "You sure?" } %></div>)
+        <td> <%if(t.completed==true)%>Completed<%else%>Uncomplete<%end%><div class="btn  btn-sm  " style color="red" ><%= link_to "(Change)", todos_complete_path(:param1 => t.id), method: :post,
+                                                                                                                                data: { confirm: "You sure?" } %></div>
         </td>
-        <td> <%if(t.private==false)%>Public<%else%>Private<%end%><div class="btn  btn-sm  " style color="red" >(<%= link_to "Change", todos_privateToDo_path(:param1 => t.id), method: :post,
-                                                                                                                                                                           data: { confirm: "You sure?" } %></div>)
+        <td> <%if(t.private==false)%>Public<%else%>Private<%end%><div class="btn  btn-sm  " style color="red" ><%= link_to "(Change)", todos_privateToDo_path(:param1 => t.id), method: :post,
+                                                                                                                                                                           data: { confirm: "You sure?" } %></div>
         </td>
-        <td> <div  class="btn btn-info btn-sm  "  ><%= link_to "delete", todos_destroy_path(:param1 => t.id), method: :delete,
+        <td> <div  id="delete" class="btn btn-info btn-sm  "  ><%= link_to "delete", todos_destroy_path(:param1 => t.id), method: :delete,
                                                                                           data: { confirm: "You sure?" } %></div></td>
 
       </tr><% end %>

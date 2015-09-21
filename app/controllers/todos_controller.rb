@@ -5,23 +5,26 @@ class TodosController < ApplicationController
     render :index
   end
   def new
-  @new_todo = Todo.new
+    # @new_todo = Todo.new
   end
 
 
 
 
   def create
-    @todo = current_user.todos.create(todo_params)
-    if @todo.valid?
-      flash[:success]= "Todo added successfully"
 
+    @todo = current_user.todos.create(todo_params)
+    # binding.pry
+    if @todo.valid?
+      flash.now[:success]= "Todo added successfully"
+      redirect_to :action => 'index'
     else
-      #flash[:error] = @todo.errors.full_messages.join("<br>").html_safe
-      render 'new'
+      flash.now[:error] = @todo.errors.full_messages.join("<br>").html_safe
+      render 'todos/new'
     end
-    redirect_to :action => 'index'
+
   end
+
   def destroy
     @todo = Todo.find(params[:param1])
     @todo.destroy
@@ -43,10 +46,10 @@ class TodosController < ApplicationController
 
  def privateToDo
    @todo = Todo.find(params[:param1])
-   if(@todo.private==false)
-     @todo.update_attribute(:private, true)
-   else
+   if(@todo.private==true)
      @todo.update_attribute(:private, false)
+   else
+     @todo.update_attribute(:private, true)
    end
    redirect_to :action => 'index'
  end

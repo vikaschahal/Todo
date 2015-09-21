@@ -28,6 +28,7 @@
   </thead>
   <tbody>
      <% @todos.each do |t| %>
+     <% if (t.private==false) %>
     <tr>
 
       <td><%= t.todo_item %></td>
@@ -37,6 +38,7 @@
       <td> <%if(t.completed.nil?)%>Uncomplete<%else%>Completed<%end%></td>
 
     </tr>
+    <%end%>
     <% end %>
       </tbody>
 </table>
