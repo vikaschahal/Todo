@@ -12,16 +12,24 @@ class TodosController < ApplicationController
 
 
   def create
-
-    @todo = current_user.todos.create(todo_params)
     # binding.pry
-    if @todo.valid?
-      flash.now[:success]= "Todo added successfully"
-      redirect_to :action => 'index'
-    else
+
+     @todo = current_user.todos.build(todo_params)
+    # binding.pry
+     if @todo.valid?
+       if (params[:todo][:start_date].to_date > params[:todo][:end_date].to_date)
+         flash.now[:error] = "Start Date should be before end date"
+         render 'todos/new'
+        elsif @todo.save
+         flash.now[:success]= "Todo added successfully"
+         redirect_to :action => 'index'
+        end
+     else
       flash.now[:error] = @todo.errors.full_messages.join("<br>").html_safe
       render 'todos/new'
-    end
+     end
+
+
 
   end
 
