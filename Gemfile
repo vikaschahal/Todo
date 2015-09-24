@@ -13,6 +13,10 @@ gem 'pry'
 gem 'devise'
 gem 'bootstrap-datepicker-rails', '>= 0.6.21'
 gem 'jquery-validation-rails'
+gem 'rspec'
+gem 'rspec-rails'
+gem 'database_cleaner'
+gem 'factory_girl'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -43,6 +47,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  
+
+  gem "factory_girl_rails"
+  gem "shoulda-matchers"  
+  gem 'cucumber-rails', :require => false
+
 end
 
 group :development do

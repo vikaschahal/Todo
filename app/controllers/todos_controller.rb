@@ -1,7 +1,6 @@
 class TodosController < ApplicationController
   def index
     @todo_items = current_user.todos.all
-    #@new_todo = Todo.new
     render :index
   end
   def new
@@ -43,12 +42,15 @@ class TodosController < ApplicationController
 
 
   def complete
-    @todo = Todo.find(params[:param1])
-    if(@todo.completed==true)
-      @todo.update_attribute(:completed, false)
-    else
-      @todo.update_attribute(:completed, true)
-    end
+    # binding.pry
+    @todo = Todo.new
+    @todo.done(params)
+    # if(@todo.completed==true)
+    #   @todo.update_attribute(:completed, false)
+    # else
+    #   @todo.update_attribute(:completed, true)
+    # end
+    # binding.pry
     redirect_to :action => 'index'
  end
 
@@ -93,4 +95,6 @@ class TodosController < ApplicationController
    def todo_params
       params.require(:todo).permit(:todo_item,:start_date,:end_date)
     end
+    
+    
  end
