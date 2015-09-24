@@ -1,5 +1,6 @@
 class TodosController < ApplicationController
   def index
+    # binding.pry
     @todo_items = current_user.todos.all
     render :index
   end
@@ -33,16 +34,19 @@ class TodosController < ApplicationController
   end
 
   def destroy
+    
     @todo = Todo.find(params[:param1])
     @todo.destroy
+    
     flash[:success] = "Todo deleted"
+    # binding.pry
     redirect_to request.referrer || root_url
   end
 
 
 
   def complete
-    # binding.pry
+  
     @todo = Todo.new
     @todo.done(params)
     # if(@todo.completed==true)
@@ -52,6 +56,7 @@ class TodosController < ApplicationController
     # end
     # binding.pry
     redirect_to :action => 'index'
+    # binding.pry
  end
 
  def privateToDo
