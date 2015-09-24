@@ -7,6 +7,7 @@ describe TodosController do
 
   before(:each) do
       @user = User.create( email: "aaf@adfd.com", password: Devise.friendly_token )
+      @todo= @user.todos.create(todo_item:"sample",start_date:"2015-09-11",end_date:"2015-09-14")
       sign_in @user
   end
 
@@ -39,7 +40,22 @@ describe TodosController do
       
       post :complete,params
       expect(response.status).to eq(302)
-      expect(request).to redirect_to(:action =>:index)
+      # response.should redirect_to 'todos/index'
+      #  expect(response).to redirect_to('/todos/index')
+      
+    end
+  end
+  describe "#destroy" do
+    it "destroy the selected todo from table" do
+      params={param1:@todo.id}
+        # expect_any_instance_of(Todo).to receive(:find).with(params)
+      #  binding.pry
+      # expect(:return_value).to be_instance_of(Todo)
+        # expect_any_instance_of(Todo).to receive(:destroy)
+      #  expect(controller).to set_flash[:success]
+       delete :destroy,params
+       expect(flash[:success]).to be_present
+       expect(response.status).to eq(302)
     end
   end
 	
