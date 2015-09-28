@@ -51,6 +51,9 @@ group :development, :test do
   gem "shoulda-matchers"  
   gem 'cucumber-rails', :require => false
   gem 'webrat'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem "launchy", "~> 2.2.0"
 
 end
 
